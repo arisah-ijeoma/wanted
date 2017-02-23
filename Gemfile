@@ -19,6 +19,18 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'pry-rails'
-  gem 'web-console', '~> 2.0'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'shoulda'
   gem 'spring'
+end
+
+group :development do
+  gem 'web-console', '~> 2.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
 end
