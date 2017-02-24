@@ -1,8 +1,8 @@
-== README
+# README
 
 Ruby version is set to 2.2.0
 
-### To Get Started
+## To Get Started
 
 * Run `bundle`
 
