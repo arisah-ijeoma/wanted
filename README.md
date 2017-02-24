@@ -7,6 +7,10 @@ Bundler version is set to 1.13.6
 
 * Run `bundle`
 
+* Request for the database configuration file
+
+* Install Postgresql with Homebrew
+
 * Run `rake db:create db:migrate`
 
 * Run `rspec`
