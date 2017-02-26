@@ -6,10 +6,9 @@ FactoryGirl.define do
     full_name 'Jay Jay'
     address 'Home Sweet Home'
     phone_number '02942029586'
-    role 'owner'
 
     trait :invalid do
-      role nil
+      phone_number 1234
     end
 
     factory :invalid_user, traits: [:invalid]

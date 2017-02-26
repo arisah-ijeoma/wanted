@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::API
   include AbstractController::Translation
+  include CanCan::ControllerAdditions
+
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: {'message' => 'You are not unauthorized to access this page'}, status: 403
+  end
 
   before_action :authenticate_user_from_token!
 
@@ -35,5 +40,17 @@ class ApplicationController < ActionController::API
 
   def authentication_error
     render json: {error: 'Unauthorized'}, status: 401
+  end
+
+  def current_user
+    return @_logged_in_user if defined?(@_logged_in_user)
+    warden = request.env["warden"]
+    @_logged_in_user = warden && warden.user(:user)
+  end
+
+
+
+  def get_user
+    @user = current_user
   end
 end

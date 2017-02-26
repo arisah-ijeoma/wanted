@@ -1,17 +1,42 @@
 require 'rails_helper'
 
-describe V1::UsersController do
-
+describe V1::SessionsController do
   describe 'POST#create' do
+    let(:user) { create(:user) }
 
-    it 'returns invalid status for invalid details' do
-      post :create, user: attributes_for(:invalid_user)
-      expect(response.status).to eq(422)
+    describe 'successful login' do
+      it 'returns the user access token' do
+
+        user_params = {
+            'user' => {
+                'email' => user.email,
+                'password' => user.password
+            }
+        }
+
+        post :create, user_params
+
+        json = JSON.parse(response.body)
+
+        expect(response.status).to eq(200)
+        expect(json['access_token']).to eq(user.access_token)
+      end
     end
 
-    it 'returns ok status for valid details' do
-      post :create, user: attributes_for(:user)
-      expect(response.status).to eq(200)
+    describe 'unsuccessful login' do
+      it 'returns the error' do
+
+        user_params = {
+            'user' => {
+                'email' => user.email,
+                'password' => 'user.password'
+            }
+        }
+
+        post :create, user_params
+
+        expect(response.status).to eq(422)
+      end
     end
   end
 end

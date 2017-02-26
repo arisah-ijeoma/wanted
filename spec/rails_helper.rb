@@ -54,13 +54,12 @@ RSpec.configure do |config|
   end
 
   config.infer_spec_type_from_file_location!
-  # config.include FeatureHelper, type: :feature
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include AuthHelper, type: :controller
 
-  Capybara.configure do |config|
-    config.match = :prefer_exact
-    config.always_include_port = true
+  Capybara.configure do |c|
+    c.match = :prefer_exact
+    c.always_include_port = true
   end
 end

@@ -4,9 +4,11 @@ class User < ActiveRecord::Base
 
   after_create :update_access_token!
 
-  validates :full_name, :address, :phone_number, :role, presence: true
+  validates :full_name, :address, :phone_number, presence: true
   validates :email, format: { with: Devise.email_regexp }
   validates :phone_number, format: { with: /[[:digit:]]{10}/ }, length: {minimum: 11, maximum: 14}
+
+  has_many :jobs, dependent: :destroy
 
   private
 

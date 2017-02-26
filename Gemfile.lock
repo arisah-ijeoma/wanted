@@ -45,6 +45,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
+    cancancan (1.16.0)
     capybara (2.12.1)
       addressable
       mime-types (>= 1.16)
@@ -187,6 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.3)
+  cancancan
   capybara
   database_cleaner
   devise

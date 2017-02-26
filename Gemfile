@@ -14,6 +14,8 @@ gem 'devise'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'cancancan'
+
 group :development, :test do
   gem 'faker'
   gem 'pry'
