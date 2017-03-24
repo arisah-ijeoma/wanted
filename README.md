@@ -1,7 +1,7 @@
 # README
 
-Ruby version is set to 2.2.0
-Bundler version is set to 1.13.6
+Ruby version is set to 2.4.0
+Bundler version is set to 1.14.6
 
 ## To Get Started
 
