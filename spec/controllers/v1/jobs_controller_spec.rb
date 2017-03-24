@@ -43,44 +43,37 @@ describe V1::JobsController do
 
   describe 'GET#show' do
     it 'returns ok status' do
-      get :show, id: job
+      get :show, params: { id: job }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'POST#create' do
     it 'returns ok status' do
-      post :create, job_params
+      post :create, params: job_params
       expect(response.status).to eq(200)
     end
 
     it 'fails with invalid params' do
-      post :create, invalid_job_params
+      post :create, params: invalid_job_params
       expect(response.status).to eq(422)
-    end
-  end
-
-  describe 'GET#edit' do
-    it 'returns ok status' do
-      get :edit, id: job
-      expect(response.status).to eq(200)
     end
   end
 
   describe 'PUT#update' do
     it 'returns ok status' do
-      put :update, { id: job, job: attributes_for(:job) }
+      put :update, params: { id: job, job: attributes_for(:job) }
       expect(response.status).to eq(200)
     end
 
     it 'fails with invalid params' do
-      put :update, { id: job, job: attributes_for(:invalid_job) }
+      put :update, params: { id: job, job: attributes_for(:invalid_job) }
       expect(response.status).to eq(422)
     end
 
     it 'returns unauthorized when user is not the owner of the job' do
       login fishy_user
-      put :update, { id: job, 'job' => {
+      put :update, params: { id: job, 'job' => {
                              'classification' => job.classification,
                              'duration' => job.duration,
                              'description' => job.description,
@@ -93,7 +86,7 @@ describe V1::JobsController do
 
   describe 'DELETE#destroy' do
     it 'returns ok status' do
-      delete :destroy, id: job
+      delete :destroy, params: { id: job }
       expect(response.status).to eq(200)
       expect(Job.exists?(job.id)).to be false
     end

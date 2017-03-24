@@ -14,7 +14,7 @@ describe V1::SessionsController do
             }
         }
 
-        post :create, user_params
+        post :create, params: user_params
 
         json = JSON.parse(response.body)
 
@@ -33,7 +33,7 @@ describe V1::SessionsController do
             }
         }
 
-        post :create, user_params
+        post :create, params: user_params
 
         expect(response.status).to eq(422)
       end

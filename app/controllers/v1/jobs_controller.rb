@@ -11,6 +11,11 @@ module V1
     end
 
     def show
+      if @job
+        render json: @job, serializer: JobsSerializer
+      else
+        render status: 404
+      end
     end
 
     def create
@@ -21,9 +26,6 @@ module V1
       else
         render json: { error: 'Error creating job' }, status: :unprocessable_entity
       end
-    end
-
-    def edit
     end
 
     def update
