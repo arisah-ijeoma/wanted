@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :job, class: Job do
     classification 'full-time'
-    duration '3 weeks'
     description 'I am Ijeoma. Hear me roar!'
+    title 'Ruby on Rails Developer'
+    amount 100000
 
     trait :invalid do
       classification ''

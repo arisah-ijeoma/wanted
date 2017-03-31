@@ -7,16 +7,16 @@ describe V1::JobsController do
   let(:job_params) { {
       'job' => {
           'classification' => job.classification,
-          'duration' => job.duration,
           'description' => job.description,
+          'title' => job.title,
           'user_id' => job.user_id
       }
   } }
   let(:invalid_job_params) { {
       'job' => {
           'classification' => '',
-          'duration' => job.duration,
           'description' => job.description,
+          'title' => '',
           'user_id' => job.user_id
       }
   } }
@@ -24,8 +24,8 @@ describe V1::JobsController do
   let(:job_params_with_invalid_user) { {
       'job' => {
           'classification' => '',
-          'duration' => job.duration,
           'description' => job.description,
+          'title' => '',
           'user_id' => fishy_user.id
       }
   } }
@@ -75,7 +75,7 @@ describe V1::JobsController do
       login fishy_user
       put :update, params: { id: job, 'job' => {
                              'classification' => job.classification,
-                             'duration' => job.duration,
+                             'title' => job.title,
                              'description' => job.description,
                              'user_id' => fishy_user.id
                              }

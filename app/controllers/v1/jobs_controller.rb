@@ -6,8 +6,14 @@ module V1
     before_action :get_user
 
     def index
-      @jobs = Job.all
-      render json: @jobs, each_serializer: JobsSerializer
+      all_jobs = Job.all
+      decorated_jobs = JobDecorator.new(all_jobs)
+      jobs = decorated_jobs.get_by_request(params[:q],
+                                           params[:type],
+                                           params[:remote],
+                                           params[:min],
+                                           params[:max])
+      render json: jobs, each_serializer: JobsSerializer
     end
 
     def show
@@ -19,10 +25,10 @@ module V1
     end
 
     def create
-      @job = @user.jobs.new(job_params)
+      job = @user.jobs.new(job_params)
 
-      if @job.save
-        render json: @job, serializer: V1::JobsSerializer
+      if job.save
+        render json: job, serializer: V1::JobsSerializer
       else
         render json: { error: 'Error creating job' }, status: :unprocessable_entity
       end
@@ -46,7 +52,8 @@ module V1
     def job_params
       params.require(:job).permit(:classification,
                                   :remote,
-                                  :duration,
+                                  :title,
+                                  :amount,
                                   :description,
                                   :user_id)
     end
