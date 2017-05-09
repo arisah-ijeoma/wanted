@@ -13,7 +13,7 @@ describe JobDecorator, type: :model do
       end
 
       it do
-        expect(Job.filter_by_classification('part-time')).to eq([])
+        expect(Job.filter_by_type('part-time')).to eq([])
       end
 
       it do
