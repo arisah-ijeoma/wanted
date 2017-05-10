@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   after_create :update_access_token!
@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates :phone_number, format: { with: /[[:digit:]]{10}/ }, length: {minimum: 11, maximum: 14}
 
   has_many :jobs, dependent: :destroy
+
+  def send_on_create_confirmation_instructions
+    # overwrite devise method to prevent sending confirmation mail
+  end
 
   private
 

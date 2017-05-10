@@ -1,7 +1,7 @@
 module V1
   class SessionSerializer < ActiveModel::Serializer
 
-    attributes :email, :token_type, :user_id, :access_token, :admin
+    attributes :email, :token_type, :user_id, :access_token, :admin, :confirmed_at
 
     def user_id
       object.id

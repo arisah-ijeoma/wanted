@@ -13,12 +13,12 @@ module V1
                                            params[:remote],
                                            params[:min],
                                            params[:max])
-      render json: jobs, each_serializer: JobsSerializer
+      render json: jobs, each_serializer: V1::JobsSerializer
     end
 
     def show
       if @job
-        render json: @job, serializer: JobsSerializer
+        render json: @job, serializer: V1::JobsSerializer
       else
         render status: 404
       end
@@ -39,6 +39,15 @@ module V1
         render json: @job, serializer: V1::JobsSerializer
       else
         render json: { error: 'Error updating job' }, status: :unprocessable_entity
+      end
+    end
+
+    def apply
+      # apply feature will be implemented
+      if @user.confirmed_at.present?
+        render json: { message: 'This person can apply' }, status: :ok
+      else
+        render json: { message: 'Confirm your email' }, statue: :unprocessable_entity
       end
     end
 
