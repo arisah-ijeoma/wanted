@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.2'
+gem 'rails', '5.2.1'
 
 # Use pg as the database for Active Record
 gem 'pg'
@@ -22,8 +22,8 @@ group :development, :test do
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'shoulda'
   gem 'spring'
 end
